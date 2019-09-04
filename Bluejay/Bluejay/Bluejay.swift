@@ -361,7 +361,7 @@ public class Bluejay: NSObject { //swiftlint:disable:this type_body_length
             debugLog("CBCentralManager initialized.")
         case .use(let manager, let peripheral):
             cbCentralManager = manager
-
+            cbCentralManager.delegate = self
             if let peripheral = peripheral {
                 connectedPeripheral = Peripheral(delegate: self, cbPeripheral: peripheral)
                 peripheral.delegate = connectedPeripheral
@@ -1305,7 +1305,7 @@ extension Bluejay: CBCentralManagerDelegate {
 
         connectingCallback = nil
 
-        connectedPeripheral = connectingPeripheral
+        connectedPeripheral = Peripheral(delegate: self, cbPeripheral: peripheral)
         connectingPeripheral = nil
 
         precondition(connectedPeripheral != nil, "Connected peripheral is assigned a nil value despite Bluejay has successfully finished a connection.")
