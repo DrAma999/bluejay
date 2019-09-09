@@ -332,6 +332,10 @@ extension Peripheral: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         delegate.didReadRSSI(from: self, RSSI: RSSI, error: error)
     }
+    /// Called when the peripheral updates its name.
+    public func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
+        debugLog("Peripheral changed name \(peripheral)...")
+    }
 
     /// Called when the peripheral removed or added services.
     public func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
