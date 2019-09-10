@@ -1309,6 +1309,7 @@ extension Bluejay: CBCentralManagerDelegate {
         connectingPeripheral = nil
 
         precondition(connectedPeripheral != nil, "Connected peripheral is assigned a nil value despite Bluejay has successfully finished a connection.")
+        debugLog("Connected peripheral: \(connectedPeripheral!.identifier.name ?? connectedPeripheral!.identifier.uuid)")
 
         shouldAutoReconnect = true
         debugLog("Should auto-reconnect: \(shouldAutoReconnect)")
